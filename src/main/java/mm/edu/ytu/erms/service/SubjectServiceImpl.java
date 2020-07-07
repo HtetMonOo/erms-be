@@ -2,8 +2,8 @@ package mm.edu.ytu.erms.service;
 
 import com.sun.xml.bind.annotation.OverrideAnnotationOf;
 import mm.edu.ytu.erms.model.Subject;
+
 import mm.edu.ytu.erms.repository.SubjectRepository;
-import mm.edu.ytu.erms.service.SubjectService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
