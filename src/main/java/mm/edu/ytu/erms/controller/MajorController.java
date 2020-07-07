@@ -1,9 +1,7 @@
 package mm.edu.ytu.erms.controller;
 
 import mm.edu.ytu.erms.model.Major;
-import mm.edu.ytu.erms.repository.MajorRepository;
 import mm.edu.ytu.erms.service.MajorService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
