@@ -2,14 +2,17 @@ package mm.edu.ytu.erms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity(name = "address")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Address extends MainModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +21,18 @@ public class Address extends MainModel {
 	@Column(name = "postal_code")
 	private String postalCode;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "town_pcode", nullable = false)
-//	private Town town;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "town_pcode", nullable = false)
+	private Town town;
 	
+	public Address() {}
+	
+	public Town getTown() {
+		return town;
+	}
+	public void setTown(Town town) {
+		this.town = town;
+	}
 	public Long getId() {
 		return id;
 	}
