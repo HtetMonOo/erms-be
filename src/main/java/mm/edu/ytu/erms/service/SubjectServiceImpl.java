@@ -1,36 +1,60 @@
 package mm.edu.ytu.erms.service;
 
+import com.sun.xml.bind.annotation.OverrideAnnotationOf;
 import mm.edu.ytu.erms.model.Subject;
+import mm.edu.ytu.erms.repository.SubjectRepository;
 import mm.edu.ytu.erms.service.SubjectService;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
-    private static Map<String, Subject> subjectRepo = new HashMap<>();
+
+    @Autowired
+    SubjectRepository subjectRepository;
 
     @Override
-    public void createSubject(Subject subject) {
-        subjectRepo.put(subject.getCode(), subject);
+    public Page<Subject> getAll(Pageable page) {
+        return subjectRepository.findAll(page);
     }
-    @Override
-    public void updateSubject(String code, Subject subject) {
-        subjectRepo.remove(code);
-        subject.setCode(code);
-        subjectRepo.put(code, subject);
-    }
-    @Override
-    public void deleteSubject(String code) {
-        subjectRepo.remove(code);
 
-    }
     @Override
-    public Collection<Subject> getSubjects() {
-        return subjectRepo.values();
+    public List<Subject> getSome(String code) {
+        return subjectRepository.findByCodeContains(code);
+    }
+
+    @Override
+    public Subject getByCode(String code) {
+        return subjectRepository.getOne(code);
+    }
+
+    @Override
+    public Subject getByName(String name) {
+        return subjectRepository.findByName(name);
+    }
+
+    @Override
+    public Subject create(Subject subject) {
+        return subjectRepository.saveAndFlush(subject);
+    }
+
+    @Override
+    public Subject update(Subject subject) {
+        Subject oldData = subjectRepository.getOne(subject.getCode());
+        BeanUtils.copyProperties(subject, oldData);
+        return subjectRepository.saveAndFlush(oldData);
+    }
+
+    @Override
+    public void delete(String code) {
+        subjectRepository.deleteById(code);
     }
 }

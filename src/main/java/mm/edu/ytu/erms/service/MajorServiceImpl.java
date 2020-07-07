@@ -10,29 +10,35 @@ import java.util.List;
 
 @Service
 public class MajorServiceImpl implements MajorService {
+
     @Autowired
     MajorRepository majorRepository;
 
-    public List<Major> getAll(){
+    @Override
+    public List<Major> getAll() {
         return majorRepository.findAll();
     }
 
-    public Major getByCode(String code){
+    @Override
+    public Major getByCode(String code) {
         return majorRepository.findByCodeContains(code);
     }
 
-    public Major create(Major major){
+    @Override
+    public Major create(Major major) {
         return majorRepository.saveAndFlush(major);
     }
 
-    public Major update(Major major){
+    @Override
+    public Major update(Major major) {
         Major oldData = majorRepository.getOne(major.getCode());
         BeanUtils.copyProperties(major, oldData, "dateCreated");
         System.out.println("In serviceImpl");
         return majorRepository.saveAndFlush(oldData);
     }
 
-    public void delete(String code){
+    @Override
+    public void delete(String code) {
         majorRepository.deleteById(code);
     }
 }
