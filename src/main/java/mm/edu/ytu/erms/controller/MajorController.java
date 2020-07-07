@@ -2,6 +2,7 @@ package mm.edu.ytu.erms.controller;
 
 import mm.edu.ytu.erms.model.Major;
 import mm.edu.ytu.erms.repository.MajorRepository;
+import mm.edu.ytu.erms.service.MajorService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,37 +14,31 @@ import java.util.List;
 @RequestMapping("major")
 public class MajorController {
     @Autowired
-    MajorRepository majorRepository;
+    MajorService majorService;
 
     @GetMapping
     public List<Major> getAll(){
-        return majorRepository.findAll();
+        return majorService.getAll();
     }
 
     @GetMapping("{code}")
     public Major getById(@PathVariable String code){
-        return majorRepository.getOne(code);
-    }
-
-    @GetMapping("name/{name}")
-    public Major getByName(@PathVariable String name){
-        return majorRepository.findByName(name);
+        return majorService.getByCode(code);
     }
 
     @PostMapping()
-    public Major save(@RequestBody Major major){
-        return majorRepository.saveAndFlush(major);
+    public Major create(@RequestBody Major major){
+        return majorService.create(major);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Major update(@RequestBody Major major){
-        Major oldData = majorRepository.getOne(major.getCode());
-        BeanUtils.copyProperties(major, oldData);
-        return majorRepository.saveAndFlush(oldData);
+        System.out.println("In controller");
+        return majorService.update(major);
     }
     @RequestMapping( value = "{code}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String code){
-        majorRepository.deleteById(code);
+        majorService.delete(code);
     }
 }
 
