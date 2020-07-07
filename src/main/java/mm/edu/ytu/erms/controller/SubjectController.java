@@ -2,6 +2,7 @@ package mm.edu.ytu.erms.controller;
 
 import mm.edu.ytu.erms.model.Subject;
 import mm.edu.ytu.erms.repository.SubjectRepository;
+import mm.edu.ytu.erms.service.SubjectService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,54 +16,41 @@ import java.util.List;
 @RequestMapping("subject")
 public class SubjectController {
     @Autowired
-    SubjectRepository subjectRepository;
+    SubjectService subjectService;
 
-//    @GetMapping
-//    public ResponseEntity<List<Subject>> getAll(
-//            @RequestParam(defaultValue = "0") Integer pageNo,
-//            @RequestParam(defaultValue = "10") Integer pageSize,
-//            @RequestParam(defaultValue = "position") String sortBy)
-//    {
-//        List<Subject> list = subjectService.getAll(pageNo, pageSize);
-//
-//        return new ResponseEntity<List<Subject>>(list, new HttpHeaders(), HttpStatus.OK);
-//    }
+    private Pageable page = PageRequest.of(0,10);
 
-    @GetMapping
-    public List<Subject> getSub(){
-        return subjectRepository.findAll();
-    }
-
-    @GetMapping("code/{code}")
-    public List<Subject> getAll(@PathVariable String code){
-        Pageable page = PageRequest.of(0,10);
-        List<Subject> allSubjects = subjectRepository.findByCodeContainsIgnoreCase(code, page);
-        return allSubjects;
+    @GetMapping()
+    public Page<Subject> getTopSubjects(){
+        return subjectService.getAll(page);
     }
 
     @GetMapping("{code}")
+    public List<Subject> getSome(@PathVariable String code){
+        return subjectService.getSome(code);
+    }
+
+    @GetMapping("code/{code}")
     public Subject getById(@PathVariable String code){
-        return subjectRepository.getOne(code);
+        return subjectService.getByCode(code);
     }
 
     @GetMapping("name/{name}")
     public Subject getByName(@PathVariable String name){
-        return subjectRepository.findByName(name);
+        return subjectService.getByName(name);
     }
 
     @PostMapping
     public Subject create(@RequestBody Subject subject){
-        return subjectRepository.saveAndFlush(subject);
+        return subjectService.create(subject);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Subject update(@RequestBody Subject subject){
-        Subject oldData = subjectRepository.getOne(subject.getCode());
-        BeanUtils.copyProperties(subject, oldData);
-        return subjectRepository.saveAndFlush(oldData);
+        return subjectService.update(subject);
     }
     @RequestMapping( value = "{code}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String code){
-        subjectRepository.deleteById(code);
+        subjectService.delete(code);
     }
 }

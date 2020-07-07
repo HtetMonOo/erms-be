@@ -39,4 +39,5 @@ public class DepartmentController {
     public void deleteByCode(@PathVariable String code){
         departmentService.deleteByCode(code);
     }
+
 }
