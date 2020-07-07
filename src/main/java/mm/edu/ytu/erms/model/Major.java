@@ -9,16 +9,19 @@ public class Major extends MainModel {
     @Id
     private String code;
     private String name;
+
     @Column(name = "name_mm")
     private String nameMm;
     private String type;
     private Short status=1;
+
+    @GeneratedValue( strategy = GenerationType.AUTO)
     private Short position;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "department_code", nullable = false)
-//    @JsonIgnoreProperties("major")
-//    private Department department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_code", nullable = false)
+    @JsonIgnoreProperties("major")
+    private Department department;
 
     public Major(){}
 
@@ -70,12 +73,12 @@ public class Major extends MainModel {
         this.position = position;
     }
 
-    //    public Department getDepartment() {
-//        return department;
-//    }
-//
-//    public void setDepartment(Department department) {
-//        this.department = department;
-//    }
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
 
