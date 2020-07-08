@@ -38,7 +38,7 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public Address update(Address address) {
 		Address oldAddress = addressRepository.getOne(address.getId());
-		BeanUtils.copyProperties(address, oldAddress, "id");
+		BeanUtils.copyProperties(address, oldAddress, "id", "dateCreated");
 		return addressRepository.saveAndFlush(oldAddress);
 	}
 
