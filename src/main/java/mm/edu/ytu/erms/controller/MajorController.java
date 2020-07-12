@@ -21,7 +21,7 @@ public class MajorController {
 
     @GetMapping("{code}")
     public Major getById(@PathVariable String code){
-        return majorService.getByCode(code);
+        return majorService.getById(code);
     }
 
     @PostMapping()

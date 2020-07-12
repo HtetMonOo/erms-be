@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface SubjectRepository extends JpaRepository<Subject, String> {
     public Subject findByName(String name);
-    List<Subject> findByCodeContains(String code);
 }

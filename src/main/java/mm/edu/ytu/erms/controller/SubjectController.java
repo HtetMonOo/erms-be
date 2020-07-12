@@ -24,14 +24,9 @@ public class SubjectController {
         return subjectService.getAll(page);
     }
 
-    @GetMapping("{code}")
-    public List<Subject> getSome(@PathVariable String code){
-        return subjectService.getSome(code);
-    }
-
     @GetMapping("code/{code}")
     public Subject getById(@PathVariable String code){
-        return subjectService.getByCode(code);
+        return subjectService.getById(code);
     }
 
     @GetMapping("name/{name}")

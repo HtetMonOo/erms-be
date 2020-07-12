@@ -24,12 +24,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> getSome(String code) {
-        return subjectRepository.findByCodeContains(code);
-    }
-
-    @Override
-    public Subject getByCode(String code) {
+    public Subject getById(String code) {
         return subjectRepository.getOne(code);
     }
 

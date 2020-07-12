@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MajorService {
     List<Major> getAll();
-    Major getByCode(String code);
+    Major getById(String code);
     Major create(Major major);
     Major update(Major major);
     void delete(String code);

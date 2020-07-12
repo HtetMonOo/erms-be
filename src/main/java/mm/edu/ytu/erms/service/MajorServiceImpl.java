@@ -20,8 +20,8 @@ public class MajorServiceImpl implements MajorService {
     }
 
     @Override
-    public Major getByCode(String code) {
-        return majorRepository.findByCodeContains(code);
+    public Major getById(String code) {
+        return majorRepository.getOne(code);
     }
 
     @Override
