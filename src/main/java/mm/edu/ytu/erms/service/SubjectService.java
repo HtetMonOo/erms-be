@@ -9,9 +9,8 @@ import java.util.List;
 
 @Service
 public interface SubjectService {
-    Page<Subject> getAll(Pageable page);
-    List<Subject> getSome(String code);
-    Subject getByCode(String code);
+    List<Subject> getAll(Integer pageNo, Integer pageSize);
+    Subject getById(String code);
     Subject getByName(String name);
     Subject create(Subject subject);
     Subject update(Subject subject);

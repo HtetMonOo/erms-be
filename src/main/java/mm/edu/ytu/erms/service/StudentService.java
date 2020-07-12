@@ -6,7 +6,7 @@ import mm.edu.ytu.erms.model.Student;
 
 @Service
 public interface StudentService {
-	List<Student> getAll();
+	List<Student> getAll(Integer pageNo, Integer pageSize);
 	Student getOne(String entrance_id);
 	Student save(Student student);
 	Student update(Student student);

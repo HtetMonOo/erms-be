@@ -5,7 +5,7 @@ import java.util.List;
 import mm.edu.ytu.erms.model.Nrc;
 
 public interface NrcService {
-    List<Nrc> getAll();
+    List<Nrc> getAll(Integer pageNo, Integer pageSize);
     Nrc getByCode(String code);
     Nrc save(Nrc nrc);
     Nrc update(Nrc nrc);

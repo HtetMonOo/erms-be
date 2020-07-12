@@ -15,13 +15,16 @@ public class MajorController {
     MajorService majorService;
 
     @GetMapping
-    public List<Major> getAll(){
-        return majorService.getAll();
+    public List<Major> getAll(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return majorService.getAll(pageNo, pageSize);
     }
 
     @GetMapping("{code}")
     public Major getById(@PathVariable String code){
-        return majorService.getByCode(code);
+        return majorService.getById(code);
     }
 
     @PostMapping()
