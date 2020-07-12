@@ -10,13 +10,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import mm.edu.ytu.erms.jwt.AuthEntryPointJwt;
 import mm.edu.ytu.erms.jwt.AuthJwtTokenFilter;
-import mm.edu.ytu.erms.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +24,7 @@ import mm.edu.ytu.erms.service.UserDetailsServiceImpl;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private UserDetailsService userDetailsService;
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
@@ -50,8 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/user/login").permitAll()
-				.antMatchers("/user/**").fullyAuthenticated()
-				.antMatchers("/**").permitAll()
+				.antMatchers("/").permitAll()
 				.anyRequest().fullyAuthenticated();
 		http.addFilterBefore(authJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
