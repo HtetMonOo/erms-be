@@ -27,14 +27,6 @@ public class SubjectController {
     {
         return subjectService.getAll(pageNo, pageSize);
     }
-//    public ResponseEntity<List<Subject>>(
-//            @RequestParam(defaultValue = "0") Integer pageNo,
-//            @RequestParam(defaultValue = "10") Integer pageSize
-//            )
-//    {
-//        List<Subject> list = subjectService.getAll(pageNo, pageSize);
-//        return new ResponseEntity<<List<Subject>>(list, new HttpHeaders(), HttpStatus.OK);
-//    }
 
     @GetMapping("code/{code}")
     public Subject getById(@PathVariable String code){
