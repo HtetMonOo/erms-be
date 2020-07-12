@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "5ff4bb87-1f01-4c64-af8c-6244291ae1d2",
+		"name": "ERMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Town",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/town",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"town"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByPCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/town/MMR002007702",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"town",
+								"MMR002007702"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pcode\": \"MMR002007702\",\r\n    \"code\": \"NaYa\",\r\n    \"codeMm\": \"နရ\",\r\n    \"name\": \"Nayyar\",\r\n    \"nameMm\": \"နေရာ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/town",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"town"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pcode\": \"MMR002007702\",\r\n    \"code\": \"NaYa\",\r\n    \"codeMm\": \"နရ\",\r\n    \"name\": \"NayYar\",\r\n    \"nameMm\": \"နေရာ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/town",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"town"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/town/MMR002007702",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"town",
+								"MMR002007702"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Nrc",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nrc",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nrc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nrc/295896",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nrc",
+								"295896"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"295896\",\r\n    \"type\":\"N\",\r\n    \"digit\":13,\r\n    \"town\":{\r\n        \"pcode\":\"MMR001001701\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/nrc",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nrc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"295896\",\r\n    \"type\":\"N\",\r\n    \"digit\":13,\r\n    \"town\":{\r\n        \"pcode\":\"MMR001001702\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/nrc",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nrc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nrc/295896",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nrc",
+								"295896"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "State or Region",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/stateOrRegion",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stateOrRegion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\":15,\r\n        \"name\": \"Testing\",\r\n        \"suffix\": \"Region\",\r\n        \"code\": \"TT\",\r\n        \"idMm\": \"စသမ\",\r\n        \"nameMm\": \"စမ်းသပ်မှု\",\r\n        \"suffixMm\": \"ပြည်နယ်\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/stateOrRegion",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stateOrRegion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 15,\r\n    \"name\": \"Testing\",\r\n    \"suffix\": \"Region\",\r\n    \"code\": \"T\",\r\n    \"idMm\": \"စသမ\",\r\n    \"nameMm\": \"စမ်းသပ်မှု\",\r\n    \"suffixMm\": \"ပြည်နယ်\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/stateOrRegion",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stateOrRegion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/stateOrRegion/15",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stateOrRegion",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/stateOrRegion/15",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"stateOrRegion",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

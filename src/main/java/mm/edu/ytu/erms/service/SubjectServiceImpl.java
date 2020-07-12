@@ -1,6 +1,5 @@
 package mm.edu.ytu.erms.service;
 
-import com.sun.xml.bind.annotation.OverrideAnnotationOf;
 import mm.edu.ytu.erms.model.Subject;
 
 import mm.edu.ytu.erms.repository.SubjectRepository;
@@ -12,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,17 +21,18 @@ public class SubjectServiceImpl implements SubjectService {
     SubjectRepository subjectRepository;
 
     @Override
-    public Page<Subject> getAll(Pageable page) {
-        return subjectRepository.findAll(page);
+    public List<Subject> getAll(Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        Page<Subject> pagedResult = subjectRepository.findAll(paging);
+        if(pagedResult.hasContent()){
+            return pagedResult.getContent();
+        }else{
+            return new ArrayList<Subject>();
+        }
     }
 
     @Override
-    public List<Subject> getSome(String code) {
-        return subjectRepository.findByCodeContains(code);
-    }
-
-    @Override
-    public Subject getByCode(String code) {
+    public Subject getById(String code) {
         return subjectRepository.getOne(code);
     }
 
