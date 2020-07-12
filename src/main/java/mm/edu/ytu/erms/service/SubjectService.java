@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface SubjectService {
-    Page<Subject> getAll(Pageable page);
+    List<Subject> getAll(Integer pageNo, Integer pageSize);
     Subject getById(String code);
     Subject getByName(String name);
     Subject create(Subject subject);

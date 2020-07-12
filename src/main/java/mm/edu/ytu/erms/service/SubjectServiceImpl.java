@@ -7,9 +7,11 @@ import mm.edu.ytu.erms.repository.SubjectRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,8 +21,14 @@ public class SubjectServiceImpl implements SubjectService {
     SubjectRepository subjectRepository;
 
     @Override
-    public Page<Subject> getAll(Pageable page) {
-        return subjectRepository.findAll(page);
+    public List<Subject> getAll(Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        Page<Subject> pagedResult = subjectRepository.findAll(paging);
+        if(pagedResult.hasContent()){
+            return pagedResult.getContent();
+        }else{
+            return new ArrayList<Subject>();
+        }
     }
 
     @Override

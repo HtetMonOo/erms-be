@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +20,21 @@ public class SubjectController {
     @Autowired
     SubjectService subjectService;
 
-    private Pageable page = PageRequest.of(0,10);
-
-    @GetMapping()
-    public Page<Subject> getTopSubjects(){
-        return subjectService.getAll(page);
+    @GetMapping
+    public List<Subject> getAll(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return subjectService.getAll(pageNo, pageSize);
     }
+//    public ResponseEntity<List<Subject>>(
+//            @RequestParam(defaultValue = "0") Integer pageNo,
+//            @RequestParam(defaultValue = "10") Integer pageSize
+//            )
+//    {
+//        List<Subject> list = subjectService.getAll(pageNo, pageSize);
+//        return new ResponseEntity<<List<Subject>>(list, new HttpHeaders(), HttpStatus.OK);
+//    }
 
     @GetMapping("code/{code}")
     public Subject getById(@PathVariable String code){
