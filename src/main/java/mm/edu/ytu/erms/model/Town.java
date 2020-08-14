@@ -1,8 +1,10 @@
 package mm.edu.ytu.erms.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,8 +17,10 @@ public class Town {
     private String codeMm;
     private String name;
     private String nameMm;
-    @Column(name = "state_or_region_id")
-    private int stateOrRegionId=1;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "state_or_region_id")
+    private StateOrRegion stateOrRegion;
 
     public Town() {
     }
@@ -69,12 +73,12 @@ public class Town {
         this.nameMm = nameMm;
     }
 
-    public int getStateOrRegionId() {
-        return stateOrRegionId;
+    public StateOrRegion getStateOrRegion() {
+        return stateOrRegion;
     }
 
-    public void setStateOrRegionId(int stateOrRegionId) {
-        this.stateOrRegionId = stateOrRegionId;
+    public void setStateOrRegion(StateOrRegion stateOrRegion) {
+        this.stateOrRegion = stateOrRegion;
     }
     
 }

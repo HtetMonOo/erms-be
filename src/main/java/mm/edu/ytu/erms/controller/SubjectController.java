@@ -3,9 +3,6 @@ package mm.edu.ytu.erms.controller;
 import mm.edu.ytu.erms.model.Subject;
 import mm.edu.ytu.erms.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,21 +14,17 @@ public class SubjectController {
     @Autowired
     SubjectService subjectService;
 
-    private Pageable page = PageRequest.of(0,10);
-
-    @GetMapping()
-    public Page<Subject> getTopSubjects(){
-        return subjectService.getAll(page);
-    }
-
-    @GetMapping("{code}")
-    public List<Subject> getSome(@PathVariable String code){
-        return subjectService.getSome(code);
+    @GetMapping
+    public List<Subject> getAll(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return subjectService.getAll(pageNo, pageSize);
     }
 
     @GetMapping("code/{code}")
     public Subject getById(@PathVariable String code){
-        return subjectService.getByCode(code);
+        return subjectService.getById(code);
     }
 
     @GetMapping("name/{name}")

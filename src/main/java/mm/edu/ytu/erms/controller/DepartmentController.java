@@ -16,8 +16,11 @@ public class DepartmentController {
     DepartmentService departmentService;
 
     @GetMapping
-    public List<Department> getAll(){
-        return departmentService.getAll();
+    public List<Department> getAll(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize)
+    {
+        return departmentService.getAll(pageNo, pageSize);
     }
 
     @GetMapping("{code}")

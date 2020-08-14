@@ -4,9 +4,13 @@ import mm.edu.ytu.erms.model.Department;
 import mm.edu.ytu.erms.repository.DepartmentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,8 +21,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Transactional
     @Override
-    public List<Department> getAll(){
-        return departmentRepository.findAll();
+    public List<Department> getAll(Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        Page<Department> pagedResult = departmentRepository.findAll(paging);
+        if(pagedResult.hasContent()){
+            return pagedResult.getContent();
+        }else{
+            return new ArrayList<Department>();
+        }
     }
 
     @Transactional

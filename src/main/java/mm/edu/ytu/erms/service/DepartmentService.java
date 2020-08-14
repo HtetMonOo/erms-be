@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DepartmentService {
 
-    List<Department> getAll();
+    List<Department> getAll(Integer pageNo, Integer pageSize);
     Department getByCode(String code);
     Department save(Department department);
     Department update(Department department);
